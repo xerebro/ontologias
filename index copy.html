@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontología - Soluciones de IA para Análisis Legal y Fiscal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  
+    <style>
+        :root {
+            --primary-color: #1c1c1c;
+            --secondary-color: #2a2a2a;
+            --accent-color: #3498db;
+            --text-color: #ffffff;
+            --text-light: #e0e0e0;
+            --background-color: #121212;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--primary-color);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('/api/placeholder/800/600');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+
+        .news-slider {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .news-item {
+            padding: 30px;
+            text-align: left;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-item h3 {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .news-item p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .features {
+            padding: 100px 0;
+            background-color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature h2 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            padding: 80px 0 30px;
+            color: var(--text-light);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-bg {
+                width: 100%;
+                opacity: 0.05;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        news-slider {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .news-item {
+            padding: 30px;
+            text-align: left;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-item h3 {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .news-item p {
+            color: var(--text-light);
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .news-item .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .slick-dots li button:before {
+            color: var(--accent-color);
+        }
+
+        .slick-prev, .slick-next {
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            display: block;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            transform: translate(0, -50%);
+            cursor: pointer;
+            color: transparent;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .slick-prev:before, .slick-next:before {
+            font-family: 'slick';
+            font-size: 20px;
+            line-height: 1;
+            opacity: .75;
+            color: var(--accent-color);
+            -webkit-font-smoothing: antialiased;
+        }
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            color: white;
+        }
+        .footer-bottom-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-bottom-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-bottom-links li:last-child {
+    margin-right: 0;
+}
+
+.footer-bottom-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--accent-color);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav><div style="display: flex;" ><div><img width="40px" src="https://www.ontologias.co/logox.png"> </div><div style="">
+                <a href="#" class="logo">Ontología</a>
+        </div></div>
+                
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#soluciones">Soluciones</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <a href="#demo" class="btn">Solicitar Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transformando el Análisis Legal y Fiscal con IA</h1>
+                <p>Descubre cómo Ontología revoluciona la gestión de documentos y procesos legales con soluciones de inteligencia artificial de vanguardia.</p>
+                <a href="#demo" class="btn">Explorar Soluciones</a>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <section class="news-slider">
+        <div class="container">
+            <h2 class="section-title">Últimas Innovaciones</h2>
+            <div class="slick-slider">
+                <div class="news-item">
+                    <h3>IA Generativa Revoluciona la Redacción Legal</h3>
+                    <p>Nuestra IA generativa, basada en modelos de lenguaje avanzados, está transformando la creación de documentos legales. Reduce el tiempo de redacción en un 60% y mejora la precisión, adaptándose a diferentes jurisdicciones y requisitos legales específicos.</p>
+                    <a href="#" class="read-more">Leer más</a>
+                </div>
+                <div class="news-item">
+                    <h3>Grafos de Conocimiento en Análisis Regulatorio</h3>
+                    <p>Implementamos grafos de conocimiento para mapear complejas relaciones regulatorias. Esta tecnología permite a las empresas navegar eficientemente por el panorama regulatorio, identificando rápidamente requisitos relevantes y posibles conflictos normativos.</p>
+                    <a href="#" class="read-more">Leer más</a>
+                </div>
+                <div class="news-item">
+                    <h3>IA + Grafos: Revolución en Due Diligence</h3>
+                    <p>La combinación de IA generativa y grafos de conocimiento está transformando los procesos de due diligence. Nuestro sistema analiza vastos volúmenes de documentos, extrae información clave y la contextualiza, reduciendo el tiempo de revisión en un 75%.</p>
+                    <a href="#" class="read-more">Leer más</a>
+                </div>
+                <div class="news-item">
+                    <h3>Asistentes Virtuales Potenciados por IA Generativa</h3>
+                    <p>Nuestros asistentes virtuales, ahora potenciados por IA generativa, ofrecen respuestas más precisas y contextualizadas a consultas legales complejas. Esta tecnología ha incrementado la eficiencia en la resolución de casos en un 50%.</p>
+                    <a href="#" class="read-more">Leer más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="soluciones">
+        <div class="container">
+            <h2 class="section-title">Nuestras Soluciones</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <defs>
+                                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#50E3C2;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="20" y="10" width="60" height="80" rx="5" ry="5" fill="#FFFFFF" />
+                            <line x1="30" y1="25" x2="70" y2="25" stroke="#CCCCCC" stroke-width="2" />
+                            <line x1="30" y1="35" x2="70" y2="35" stroke="#CCCCCC" stroke-width="2" />
+                            <line x1="30" y1="45" x2="60" y2="45" stroke="#CCCCCC" stroke-width="2" />
+                            <circle cx="50" cy="65" r="3" fill="url(#grad)" />
+                            <circle cx="35" cy="75" r="3" fill="url(#grad)" />
+                            <circle cx="65" cy="75" r="3" fill="url(#grad)" />
+                            <line x1="50" y1="65" x2="35" y2="75" stroke="url(#grad)" stroke-width="2" />
+                            <line x1="50" y1="65" x2="65" y2="75" stroke="url(#grad)" stroke-width="2" />
+                            <path d="M50 55 L45 62 L55 62 Z" fill="url(#grad)" />
+                            <rect x="18" y="8" width="64" height="84" rx="7" ry="7" fill="none" stroke="#FFFFFF" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h2>OntoDoc</h2>
+                    <p>OntoDoc facilita a firmas legales, fiscales y de auditoría la generación de documentos al cargar plantillas de Word, Excel o PowerPoint. Inserta marcadores, asigna fuentes de datos como URLs, archivos, llamadas API o valores fijos, y utiliza prompts de IA para rellenar automáticamente los campos. Optimiza tu flujo de trabajo y asegura precisión con inteligencia generativa.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <defs>
+                              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#50E3C2;stop-opacity:1" />
+                              </linearGradient>
+                            </defs>
+                            
+                            <!-- Documento base -->
+                            <rect x="20" y="10" width="60" height="80" rx="5" ry="5" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1" />
+                            
+                            <!-- Líneas de texto en el documento -->
+                            <line x1="30" y1="25" x2="70" y2="25" stroke="#CCCCCC" stroke-width="2" />
+                            <line x1="30" y1="35" x2="70" y2="35" stroke="#CCCCCC" stroke-width="2" />
+                            <line x1="30" y1="45" x2="60" y2="45" stroke="#CCCCCC" stroke-width="2" />
+                            
+                            <!-- Sello de aprobación -->
+                            <circle cx="65" cy="65" r="20" fill="none" stroke="url(#grad)" stroke-width="3" />
+                            <path d="M55 65 L62 72 L75 59" fill="none" stroke="url(#grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            
+                            <!-- Balanza de la justicia (representando leyes y regulaciones) -->
+                            <line x1="35" y1="60" x2="35" y2="80" stroke="url(#grad)" stroke-width="2" />
+                            <path d="M25 80 L45 80 L35 70 Z" fill="url(#grad)" />
+                            <line x1="25" y1="60" x2="45" y2="60" stroke="url(#grad)" stroke-width="2" />
+                            
+                            <!-- Estructura organizativa (representando guías internas) -->
+                            <rect x="25" y="15" width="10" height="10" fill="url(#grad)" />
+                            <line x1="30" y1="25" x2="30" y2="35" stroke="url(#grad)" stroke-width="2" />
+                            <rect x="25" y="35" width="5" height="5" fill="url(#grad)" />
+                            <rect x="35" y="35" width="5" height="5" fill="url(#grad)" />
+                            
+                            <!-- Borde exterior para contraste en fondo oscuro -->
+                            <rect x="18" y="8" width="64" height="84" rx="7" ry="7" fill="none" stroke="#FFFFFF" stroke-width="2" />
+                          </svg>
+                    </div>
+                    <h2>OntoReview</h2>
+                    <p>OntoReview es una herramienta avanzada de inteligencia artificial que automatiza el análisis de documentos legales y regulatorios. Permite extraer reglas y relaciones clave, creando una base de conocimiento estructurada para validar y asegurar el cumplimiento normativo. Con OntoReview, las empresas optimizan sus procesos, como auditorías y fusiones, reduciendo tiempo y errores, y mejorando la toma de decisiones estratégicas.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <defs>
+                              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#50E3C2;stop-opacity:1" />
+                              </linearGradient>
+                            </defs>
+                            
+                            <!-- Documento base -->
+                            <rect x="20" y="10" width="60" height="80" rx="5" ry="5" fill="#FFFFFF" />
+                            
+                            <!-- Líneas de texto en el documento -->
+                            <line x1="30" y1="25" x2="70" y2="25" stroke="#CCCCCC" stroke-width="2" />
+                            <line x1="30" y1="35" x2="70" y2="35" stroke="#CCCCCC" stroke-width="2" />
+                            <line x1="30" y1="45" x2="60" y2="45" stroke="#CCCCCC" stroke-width="2" />
+                            
+                            <!-- Red de ontología -->
+                            <circle cx="50" cy="65" r="3" fill="url(#grad)" />
+                            <circle cx="35" cy="75" r="3" fill="url(#grad)" />
+                            <circle cx="65" cy="75" r="3" fill="url(#grad)" />
+                            <line x1="50" y1="65" x2="35" y2="75" stroke="url(#grad)" stroke-width="2" />
+                            <line x1="50" y1="65" x2="65" y2="75" stroke="url(#grad)" stroke-width="2" />
+                            
+                            <!-- Lupa de revisión -->
+                            <circle cx="70" cy="30" r="15" fill="none" stroke="url(#grad)" stroke-width="3" />
+                            <line x1="80" y1="40" x2="90" y2="50" stroke="url(#grad)" stroke-width="3" />
+                            
+                            <!-- Marca de verificación -->
+                            <path d="M40 20 L50 30 L70 10" fill="none" stroke="url(#grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            
+                            <!-- Borde exterior para contraste en fondo oscuro -->
+                            <rect x="18" y="8" width="64" height="84" rx="7" ry="7" fill="none" stroke="#FFFFFF" stroke-width="2" />
+                          </svg></div>
+                    <h2>OntoSearch</h2>
+                    <p>OntoSearch es una herramienta avanzada que permite a las empresas analizar grandes volúmenes de documentos de diversos tipos y formatos. Utiliza inteligencia artificial para extraer conceptos clave y sus relaciones, proporcionando insights y permitiendo búsquedas avanzadas. Es ideal para abogados que necesitan respuestas rápidas a preguntas relacionadas con casos y M&A, y para contadores que buscan detectar fraudes y verificar pagos de impuestos al cruzar información de documentos financieros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Ontología lidera la innovación en soluciones de IA para la automatización de procesos legales y fiscales, impulsando la eficiencia y precisión en el sector.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="product.html">Soluciones</a></li>
+                        <li><a href="us.html">Nosotros</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Email: mgoyeneche@ontologias.co</p>
+                    <p>Teléfono: +57 (324) 229-1578</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ontología. Todos los derechos reservados.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="ptd.html">Política de Privacidad</a></li>
+                    <li><a href="tyc.html">Términos y Condiciones</a></li>
+                    <li><a href="ps.html">Mapa del Sitio</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $('.slick-slider').slick({
+                autoplay: true,
+                autoplaySpeed: 5000,
+                dots: true,
+                arrows: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $('header').addClass('scrolled');
+                } else {
+                    $('header').removeClass('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

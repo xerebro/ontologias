@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontología - Soluciones de IA para Análisis Legal y Fiscal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  
+    <style>
+        :root {
+            --primary-color: #1c1c1c;
+            --secondary-color: #2a2a2a;
+            --accent-color: #3498db;
+            --text-color: #ffffff;
+            --text-light: #e0e0e0;
+            --background-color: #121212;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--primary-color);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('/api/placeholder/800/600');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+
+        .news-slider {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .news-item {
+            padding: 30px;
+            text-align: left;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-item h3 {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .news-item p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .features {
+            padding: 100px 0;
+            background-color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature h2 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            padding: 80px 0 30px;
+            color: var(--text-light);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-bg {
+                width: 100%;
+                opacity: 0.05;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        news-slider {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .news-item {
+            padding: 30px;
+            text-align: left;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-item h3 {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .news-item p {
+            color: var(--text-light);
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .news-item .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .slick-dots li button:before {
+            color: var(--accent-color);
+        }
+
+        .slick-prev, .slick-next {
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            display: block;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            transform: translate(0, -50%);
+            cursor: pointer;
+            color: transparent;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .slick-prev:before, .slick-next:before {
+            font-family: 'slick';
+            font-size: 20px;
+            line-height: 1;
+            opacity: .75;
+            color: var(--accent-color);
+            -webkit-font-smoothing: antialiased;
+        }
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            color: white;
+        }
+        .footer-bottom-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-bottom-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-bottom-links li:last-child {
+    margin-right: 0;
+}
+
+.footer-bottom-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--accent-color);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav><div style="display: flex;" ><div><img width="40px" src="https://www.ontologias.co/logox.png"> </div><div style="">
+                <a href="#" class="logo">Ontología</a>
+        </div></div>
+                
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#soluciones">Soluciones</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <a href="#demo" class="btn">Solicitar Demo</a>
+            </nav>
+        </div>
+    </header>
+
+
+        <div class="container">
+            <div >
+                <h1>Transformando el Análisis Legal y Fiscal con IA</h1>
+                <p>AVISO LEGAL
+                Agradecemos su visita al sitio de Ontologia (en adelante el “Sitio”). Apreciamos su interés en adquirir los servicios tecnológicos de Ontologia.
+                
+                Le recomendamos leer y comprender los siguientes TÉRMINOS Y CONDICIONES DE USO publicados en el sitio web de Ontología y ubicados en https://www.ontologias.co antes de usar este sitio. El acceso y el uso del sitio significa que usted acepta y se obliga voluntariamente al cumplimiento de estos términos.
+                </p>
+                <ul><li>
+                    Ontologias.co este Sitio es operado por Ontologia S.A.S (Ontologia) empresa debidamente constituida en Colombia, dedicada al desarrollo de software de inteligencia artificial y comercialización de este.
+                </li><li> Requisito de edad: Usted podrá acceder y hacer uso de este sitio SI USTED es MAYOR DE EDAD, de conformidad con las leyes aplicables. Si usted no es mayor de edad o no cuenta con las autorizaciones legales y de capacidad requeridas para acceder y usar este Sitio, por favor absténgase de usarlo y no acceda a sus productos y/o funciones.
+                </li><li>    Acuerdo de uso del Sitio https://www.ontologias.co https://www.ontologias.co indica que usted se ha comprometido a aceptar y cumplir con estos TÉRMINOS Y CONDICIONES DE USO. Si usted no está de acuerdo con estos TÉRMINOS Y CONDICIONES DE USO, no ingrese a este Sitio, absténgase de hacer uso de hacer uso y no acceda a sus productos y/o funciones. Al acceder al Sitio, usted entiende que su derecho de acceder o ingresar a este Sitio podrá ser cancelado en cualquier momento por Ontologia S.A.S sin previa notificación ni justificación alguna.
+                </li><li>    Si usted decide adquirir algún servicio o producto de Ontologia S.A.S por medio de Sitio, por favor tenga en cuenta que la transmisión electrónica de información a través de las redes globales de comunicaciones puede NO ser segura, y por tanto, no existe garantía sobre la reserva, la confidencialidad o seguridad de su información. Por favor, asbtengase de compartir información sujeta a reserva, confidencialidad o secreto de cualquier tipo, dado que Ontologia S.A.S no puede garantizar la reserva, confidencialidad o secreto de cualquier tipo. Ontologia S.A.S tampoco puede asegurar la integridad o la devolución de la información, personal, confidencial o reservada a través de medio electrónicos o físicos, salvo que se haya asegurado por Ontologia S.A.S por medio escrito y de forma expresa. En coherencia con lo anterior, absténgase de enviar al sitio de Ontologia información no solicitada o cadenas de spam: hacerlo significará la violación a estos TÉRMINOS Y CONDICIONES DE USO.
+                </li><li>    Estos Términos y Condiciones pueden cambiar, Ontologia S.A.S se reserva el derecho de modificar, cambiar o terminar estos TÉRMINOS Y CONDICIONES DE USO en cualquier momento y bajo total discreción, sin necesidad de notificarle a usted previamente. Es responsabilidad suya visitar constantemente esta página para tener conocimiento de los cambios.
+                </li><li>    Ontologia se reserva el derecho de alterar, agregar, eliminar, corregir o modificar en cualquier forma el contenido de este Sitio en cualquier momento y sin previo aviso. Esto incluye, pero no se limita a, documentos, datos, testimonios, reseñas, referencias o cualquier tipo de información publicada en el Sitio. Es importante recordar que la legislación está en constante evolución y puede cambiar dependiendo de diversos factores, tales como la promulgación de nuevas normas a nivel nacional o local, la emisión de fallos judiciales, o acciones del poder ejecutivo, judicial y legislativo, entre otros. Por tanto, la información contenida en este Sitio relacionada con la situación normativa o temas jurídicos de interés podría no estar actualizada, ser incompleta, o no ser aplicable a circunstancias específicas. Le recomendamos no tomar decisiones ni llevar a cabo acciones basadas únicamente en la información encontrada en este Sitio.
+                </li><li>    Se prohíbe cualquier modificación, reproducción, publicación o transferencia de los contenidos de este Sitio a terceros, así como su uso para fines distintos a los permitidos. A menos que lo permita la legislación vigente, está terminantemente prohibido desensamblar, descompilar, realizar ingeniería inversa o intentar vulnerar de cualquier manera las medidas de protección del contenido. Todos los elementos presentes en este Sitio, incluyendo textos, formatos, imágenes, música, marcas, logotipos, signos distintivos, nombres comerciales, sonidos, gráficos, videos, animaciones y demás materiales son propiedad de Ontologia. Algunos de estos Contenidos están amparados por leyes de derechos de autor y marcas registradas. Cualquier uso no autorizado que infrinja los derechos de propiedad intelectual de Ontologia podrá derivar en acciones legales por parte de los titulares. El acceso o uso de este Sitio no concede ninguna licencia ni derecho sobre marcas, nombres, logotipos, diseños u otros contenidos protegidos por derechos de propiedad intelectual de Ontologia o terceros. Además, queda prohibida la creación de sitios web, documentos electrónicos, software o aplicaciones que incluyan hipervínculos o referencias que redirijan al usuario a cualquier contenido de este Sitio
+                </li><li>    Ontología S.A.S no vende directamente sus productos y servicios por medio del Sitio, este funge exclusivamente como un canal para adquirir dichos productos y servicios.
+                </li><li>    Ontología S.A.S no se hace responsable por reclamaciones o daños de cualquier tipo. Usted como usuario del Sitio asume a su propio riesgo al acceder al Sitio. El acceso a este Sitio y su uso, implica que USTED HA ACEPTADO EXONERAR DE RESPOSABILIDAD A ONTOLOGIA S.A.S de cualquier reclamo, queja, investigación o acción judicial o legal que tenga como sustento y/o prueba la violación de estos términos y condición es de uso por parte de Ontologia S.A.S. Asimismo, USTED ACEPTA NO PROCEDER LEGALMENTE NI JUDICIALMENTE CONTRA ONTOLOGIA S.A.S y TAMPOCO RECOBRAR A TITULO DE INDEMNIZACIÓN POR DAÑOS O PERJUICIOS DE NINGÚN TIPO DE PARTE DE ONTOLOGIA S.A.S como resultado del manejo de este sitio.
+                </li><li>    Última actualización de estos términos: 11 de septiembre de 2024.
+                </li> </ul>
+            </div>
+        </div>
+
+
+    
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Ontología lidera la innovación en soluciones de IA para la automatización de procesos legales y fiscales, impulsando la eficiencia y precisión en el sector.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="product.html">Soluciones</a></li>
+                        <li><a href="us.html">Nosotros</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Email: mgoyeneche@ontologias.co</p>
+                    <p>Teléfono: +57 (324) 229-1578</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ontología. Todos los derechos reservados.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="ptd.html">Política de Privacidad</a></li>
+                    <li><a href="tyc.html">Términos y Condiciones</a></li>
+                    <li><a href="ps.html">Mapa del Sitio</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $('.slick-slider').slick({
+                autoplay: true,
+                autoplaySpeed: 5000,
+                dots: true,
+                arrows: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $('header').addClass('scrolled');
+                } else {
+                    $('header').removeClass('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
